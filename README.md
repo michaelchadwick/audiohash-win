@@ -1,2 +1,3 @@
 # Audio Hash (Windows)
-Windows Form version of AudioHash, the audio sampler platter tool
+
+A Windows Form application that allows you to load multiple audio files and mix them together into one file.
