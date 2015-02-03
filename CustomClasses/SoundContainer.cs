@@ -173,17 +173,19 @@ namespace AudioHash
             this.audioFilePlayer.Stop();
             this.timerElapsed.Stop();
             this.timerTrackBar.Stop();
-            this.audioFilePlayer.Init(this.audioFileReader);
-            this.audioFileReader.SetPosition(0.0);
           }
-          else
-          {
-            this.audioFilePlayer.Init(this.audioFileReader);
-          }
-          this.audioFilePlayer.Play();
-          this.btnStop.Enabled = true;
+
+          // reset to beginning
+          this.audioFilePlayer.Init(this.audioFileReader);
+          this.audioFileReader.SetPosition(0.0);
+
+          // restart timers
           this.timerElapsed.Start();
           this.timerTrackBar.Start();
+
+          // play the file
+          this.audioFilePlayer.Play();
+          this.btnStop.Enabled = true;
         }
       }
     }
