@@ -17,8 +17,8 @@ namespace AudioHash
   {
     private TimeSpan defaultSoundTime;
 
-    private Timer timer1 { get; set; }
-    private Timer timer2 { get; set; }
+    private Timer timerElapsed { get; set; }
+    private Timer timerTrackBar { get; set; }
     public TextBox txtFilePath { get; set; }
     private Button btnBrowse { get; set; }
     private Button btnPlay { get; set; }
@@ -41,8 +41,8 @@ namespace AudioHash
       this.Size = new Size(362, 106);
 
       // SoundContainer controls
-      this.timer1 = new Timer();
-      this.timer2 = new Timer();
+      this.timerElapsed = new Timer();
+      this.timerTrackBar = new Timer();
       this.txtFilePath = new TextBox();
       this.btnBrowse = new Button();
       this.btnPlay = new PlayButton(txtFilePath.Text);
@@ -71,9 +71,11 @@ namespace AudioHash
       
       this.btnPlay.Location = new Point(6, 46);
       this.btnPlay.Name = "btnPlay" + soundIndex;
+      this.btnPlay.Enabled = false;
 
       this.btnStop.Location = new Point(72, 46);
       this.btnStop.Name = "btnStop" + soundIndex;
+      this.btnStop.Enabled = false;
 
       this.btnDelete.Size = new Size(22, 22);
       this.btnDelete.Name = "btnDelete" + soundIndex;
@@ -96,8 +98,8 @@ namespace AudioHash
       this.openFileDialog.Filter += "WAV file|*.wav";
      
       // SoundContainer control event handlers
-      this.timer1.Tick += new EventHandler(timer1_Tick);
-      this.timer2.Tick += new EventHandler(timer2_Tick);
+      this.timerElapsed.Tick += new EventHandler(timerElapsed_Tick);
+      this.timerTrackBar.Tick += new EventHandler(timerTrackBar_Tick);
       this.txtFilePath.DoubleClick += new EventHandler(txtFilePath_DoubleClick);
       this.btnBrowse.Click += new EventHandler(btnBrowseFile_Click);
       this.btnPlay.Click += new EventHandler(btnPlayFile_Click);
@@ -119,14 +121,14 @@ namespace AudioHash
     // EVENT HANDLERS
 
     // update sound time display
-    private void timer1_Tick(object sender, EventArgs e)
+    private void timerElapsed_Tick(object sender, EventArgs e)
     {
       TimeSpan soundCurrentTime = this.audioFileReader.CurrentTime;
       this.txtSoundTime.Text = soundCurrentTime.ToString();
     }
 
     // update trackbar position
-    private void timer2_Tick(object sender, EventArgs e)
+    private void timerTrackBar_Tick(object sender, EventArgs e)
     {
       int soundCurrentTime = (int)this.audioFileReader.CurrentTime.TotalSeconds;
       this.trackBar.Value = soundCurrentTime;
@@ -138,8 +140,8 @@ namespace AudioHash
       {
         this.trackBar.Value = 0;
         this.txtSoundTime.Text = defaultSoundTime.ToString();
-        timer1.Stop();
-        timer2.Stop();
+        timerElapsed.Stop();
+        timerTrackBar.Stop();
       }
     }
 
@@ -153,6 +155,7 @@ namespace AudioHash
       if (result == DialogResult.OK) // Test result.
       {
         this.txtFilePath.Text = this.openFileDialog.FileName;
+        this.btnPlay.Enabled = true;
       }
     }
     private void btnPlayFile_Click(object sender, EventArgs e)
@@ -168,8 +171,8 @@ namespace AudioHash
           if (this.audioFilePlayer.PlaybackState.ToString().Equals("Playing"))
           {
             this.audioFilePlayer.Stop();
-            this.timer1.Stop();
-            this.timer2.Stop();
+            this.timerElapsed.Stop();
+            this.timerTrackBar.Stop();
             this.audioFilePlayer.Init(this.audioFileReader);
             this.audioFileReader.SetPosition(0.0);
             this.audioFilePlayer.Play();
@@ -179,8 +182,9 @@ namespace AudioHash
             this.audioFilePlayer.Init(this.audioFileReader);
             this.audioFilePlayer.Play();
           }
-          this.timer1.Start();
-          this.timer2.Start();
+          this.btnStop.Enabled = true;
+          this.timerElapsed.Start();
+          this.timerTrackBar.Start();
         }
       }
     }
