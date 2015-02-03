@@ -19,8 +19,8 @@ namespace AudioHash
     int soundIndex = 0;
     int defaultSoundCount = 4;
     string testPath = Misc.GetAppSaveLocation();
-    string testFilePrefix = "snd";
-    string testFileFormat = ".wav";
+    //string testFilePrefix = "snd";
+    //string testFileFormat = "wav";
 
     public string tsNumOfSounds
     {

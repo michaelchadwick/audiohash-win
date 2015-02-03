@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -49,8 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\audio-hash.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio, Version=1.7.2.19, Culture=neutral, processorArchitecture=MSIL">
@@ -68,8 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioWriter.cs" />
-    <Compile Include="CustomButtons\StopButton.cs">
+    <Compile Include="CustomClasses\AudioWriter.cs" />
+    <Compile Include="CustomClasses\CustomButtons\StopButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainWin.cs">
@@ -78,33 +77,32 @@
     <Compile Include="MainWin.Designer.cs">
       <DependentUpon>MainWin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc.cs" />
-    <Compile Include="CustomButtons\PlayButton.cs">
+    <Compile Include="CustomClasses\Misc.cs" />
+    <Compile Include="CustomClasses\CustomButtons\PlayButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SoundContainer.cs">
+    <Compile Include="CustomClasses\SoundContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WaveStreamExtensions.cs" />
+    <Compile Include="Extensions\WaveStreamExtensions.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -112,12 +110,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\audio-hash.ico" />
+    <Content Include="Resources\Icons\audio-hash.ico" />
     <Content Include="NAudio\NAudio.dll" />
     <Content Include="NAudio\NAudio.WindowsMediaFormat.dll" />
-    <None Include="Resources\StatusAnnotations_Critical_16xLG.png" />
-    <None Include="Resources\build_Selection_16xLG.png" />
-    <None Include="Resources\action_add_16xLG.png" />
+    <None Include="README.md" />
+    <None Include="Resources\Images\StatusAnnotations_Critical_16xLG.png" />
+    <None Include="Resources\Images\build_Selection_16xLG.png" />
+    <None Include="Resources\Images\action_add_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -155,7 +155,7 @@ namespace AudioHash
           if (writer != null && boolAudioFileWrittenSuccessfully)
           {
             writer.Dispose();
-            MessageBox.Show("Sounds successfully concatenated!");
+            MessageBox.Show("Sounds successfully concatenated!", "Success!");
             Process.Start(Path.GetDirectoryName(outputFile));
           }
           else
