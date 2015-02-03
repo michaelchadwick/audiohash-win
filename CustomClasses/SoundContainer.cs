@@ -175,13 +175,12 @@ namespace AudioHash
             this.timerTrackBar.Stop();
             this.audioFilePlayer.Init(this.audioFileReader);
             this.audioFileReader.SetPosition(0.0);
-            this.audioFilePlayer.Play();
           }
           else
           {
             this.audioFilePlayer.Init(this.audioFileReader);
-            this.audioFilePlayer.Play();
           }
+          this.audioFilePlayer.Play();
           this.btnStop.Enabled = true;
           this.timerElapsed.Start();
           this.timerTrackBar.Start();
